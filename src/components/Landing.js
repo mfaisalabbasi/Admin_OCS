@@ -1,5 +1,5 @@
 import React from 'react'
-import pic from '../images/ocs.jpg'
+import pic from '../images/ocs.png'
 
 const Landing = () => {
     return (

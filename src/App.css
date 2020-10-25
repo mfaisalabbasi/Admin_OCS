@@ -47,7 +47,7 @@
   border-top-left-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-.input:focus {
+input:focus {
   outline: none;
 }
 .button {
@@ -62,7 +62,7 @@
   font-family: "ebrima";
   cursor: pointer;
 }
-.button:focus {
+button:focus {
   outline: none;
 }
 
@@ -72,10 +72,11 @@
   width: 100%;
   padding: 0px;
   margin: 0px;
+  background-color: #f2f4f4;
 }
 .header {
   width: 100%;
-  height: 60px;
+  height: 70px;
   background-color: #006aff;
   display: flex;
   align-items: center;
@@ -92,13 +93,15 @@
 .wrapper {
   width: 100%;
   display: flex;
-  margin-top: 50px;
+  margin-top: 30px;
+  padding-bottom: 50px;
 }
 .sidebar {
   width: 10%;
   display: flex;
-  padding-left: 50px;
+  padding-left: 10px;
   background-color: #ffffff;
+  margin-left: 20px;
 }
 li {
   text-decoration: none;
@@ -107,7 +110,7 @@ li {
 }
 a {
   text-decoration: none;
-  color: #006aff;
+  color: #2874a6;
   font-size: 16px;
   font-size: medium;
   font-weight: 600;
@@ -121,12 +124,11 @@ li a:hover {
 }
 .content {
   width: 90%;
-  border-left: 2px solid #3498db;
 }
 
 .img {
   width: 100%;
-  height: 500px;
+  height: 550px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -136,4 +138,128 @@ li a:hover {
   margin-left: auto;
   margin-right: auto;
   height: 100%;
+}
+
+/* customres screen */
+
+.container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.section {
+  width: 48%;
+  background-color: #ffffff;
+}
+.searchCon {
+  width: 100%;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.search {
+  padding: 8px;
+  display: block;
+  width: 40%;
+  border: 0.3px solid #bfc9ca;
+  border-radius: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn {
+  display: block;
+  width: 25%;
+  background-color: #006aff;
+  padding: 8px;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 50px;
+  color: #ffffff;
+  border: none;
+  font-family: "ebrima";
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+.userCon {
+  width: 100%;
+}
+.user {
+  width: 80%;
+  height: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  cursor: pointer;
+  padding-bottom: 10px;
+  border-radius: 100px;
+}
+
+.pic {
+  width: 20%;
+  height: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.email {
+  width: 80%;
+  height: 100%;
+  background-color: #f2f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile {
+  width: 45%;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 200px;
+  overflow: hidden;
+}
+
+.data {
+  width: 100%;
+}
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+}
+.update {
+  padding: 10px;
+  width: 40%;
+  margin: 10px;
+  border-radius: 20px;
+  border: 0.3px solid #bfc9ca;
+}
+
+/* logout screen */
+.logout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sublog {
+  width: 20%;
+  padding: 50px;
+}
+.logbtn {
+  display: block;
+  width: 100%;
+  background-color: #006aff;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 50px;
+  color: #ffffff;
+  border: none;
+  font-family: "ebrima";
+  cursor: pointer;
 }
