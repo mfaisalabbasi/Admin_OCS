@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+/* App.css Styles */
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Login Screen  */
+.login {
+  width: 100%;
+  background-color: #006aff;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.box {
+  width: 50%;
+  background-color: #ffffff;
+  height: 350px;
+  border-radius: 20px;
+  padding-top: 50px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
+  color: #006aff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-family: "ebrima";
+  margin-bottom: -10px;
+}
+.form {
+  width: 100%;
+  height: 50%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.input {
+  padding: 12px;
+  margin-top: 12px;
+  display: block;
+  width: 45%;
+  border: 0.3px solid #bfc9ca;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.input:focus {
+  outline: none;
+}
+.button {
+  display: block;
+  width: 35%;
+  background-color: #006aff;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 50px;
+  color: #ffffff;
+  border: none;
+  font-family: "ebrima";
+  cursor: pointer;
+}
+.button:focus {
+  outline: none;
 }
 
-.App-link {
-  color: #61dafb;
+/* Dashboard Component */
+
+.main {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: #006aff;
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tit {
+  color: #ffffff;
+  font-family: "ebrima";
+  font-size: 22px;
+  font-weight: 600;
+  margin-left: 65px;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+}
+.sidebar {
+  width: 10%;
+  display: flex;
+  padding-left: 50px;
+  background-color: #ffffff;
+}
+li {
+  text-decoration: none;
+  list-style: none;
+  margin-top: 5px;
+}
+a {
+  text-decoration: none;
+  color: #006aff;
+  font-size: 16px;
+  font-size: medium;
+  font-weight: 600;
+  display: block;
+  padding: 10px;
+}
+
+li a:hover {
+  color: #ffffff;
+  background-color: #006aff;
+}
+.content {
+  width: 90%;
+  border-left: 2px solid #3498db;
+}
+
+.img {
+  width: 100%;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imag {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
 }
