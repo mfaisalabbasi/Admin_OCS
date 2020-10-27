@@ -3,6 +3,11 @@
   margin: 0px;
   padding: 0px;
 }
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
 
 /* Login Screen  */
 .login {
@@ -262,4 +267,28 @@ li a:hover {
   border: none;
   font-family: "ebrima";
   cursor: pointer;
+}
+
+/* Partner section */
+.boxCon {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 3px;
+  justify-content: center;
+  align-items: center;
+}
+.boxcon {
+  width: 12%;
+  overflow: hidden;
+  height: 110px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  border: 0.3px solid #bfc9ca;
+  padding: 5px;
 }

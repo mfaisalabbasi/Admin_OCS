@@ -1,16 +1,15 @@
 import React from 'react'
 import pic from '../images/boy.jpg'
-const Customers = () => {
+const Category = () => {
     return (
-        
         <div className='container'>
         <div className='section'><div className='searchCon' >
-        <input className='search' type='text' placeholder='Search Customer'/>
+        <input className='search' type='text' placeholder='Search Partner'/>
        <button className='btn'>Search</button>
         </div>
         <div className='userCon'>
         <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+         <div className='pic'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
          <div className='email'>
          <div className='txt'>
          <h4>Muhammad Faisal</h4>
@@ -20,7 +19,7 @@ const Customers = () => {
          </div>
         </div>
         <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+         <div className='pic'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
          <div className='email'>
          <div className='txt'>
          <h4>Muhammad Faisal</h4>
@@ -30,7 +29,7 @@ const Customers = () => {
          </div>
         </div>
         <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+         <div className='pic'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
          <div className='email'>
          <div className='txt'>
          <h4>Muhammad Faisal</h4>
@@ -40,7 +39,7 @@ const Customers = () => {
          </div>
         </div>
         <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+         <div className='pic'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
          <div className='email'> <div className='txt'>
          <h4>Muhammad Faisal</h4>
          <h5>faisal@gmail.com</h5>
@@ -48,7 +47,7 @@ const Customers = () => {
 </div>
         </div>
         <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+         <div className='pic'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
          <div className='email'><div className='txt'>
          <h4>Muhammad Faisal</h4>
          <h5>faisal@gmail.com</h5>
@@ -58,7 +57,7 @@ const Customers = () => {
         </div>
       </div></div>
         <div className='section'>
-            <div className='profile'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
+            <div className='profile'><img src={pic} alt='pic' width='100%'  height='100%'/></div>
             <div className='data'>
               <div className='info'>
               <input type='text' placeholder='Muhammad Faisal' className='update'/>
@@ -75,9 +74,7 @@ const Customers = () => {
         </div>
         
         </div>
-           
-     
     )
 }
 
-export default Customers
+export default Category

@@ -1,19 +1,22 @@
 import React, { Fragment } from 'react'
 import {
-    Route,
    withRouter
   } from "react-router-dom";
   import Customers from './Customers';
   import Partners from './Partners';
   import Logout from './Logout';
 import Landing from './Landing';
+import Category from './Category';
+import PrivateRoute from './PrivateRoute';
 const Content = () => {
     return (
         <Fragment>
-          <Route exact path="/home" component={Landing}/>
-          <Route path="/home/customers" component={withRouter(Customers)}/>
-          <Route path="/home/partners" component={withRouter(Partners)} />
-          <Route path="/home/logout" component={withRouter(Logout)} />
+          <PrivateRoute path="/dashboard" component={Landing} exact/>
+          <PrivateRoute path="/dashboard/customers" component={withRouter(Customers)} />
+          <PrivateRoute path="/dashboard/partners" component={withRouter(Partners)}  />
+          <PrivateRoute path="/dashboard/logout" component={withRouter(Logout)}  />
+          <PrivateRoute path="/dashboard/partners/id" component={withRouter(Category)} />
+
         </Fragment>
            
     )
