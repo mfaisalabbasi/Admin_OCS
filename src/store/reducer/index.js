@@ -3,10 +3,13 @@ import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import login from './login'
+import customer from './customer'
+import category from './category'
+import partner from './partner'
 
 const persistConfig = {
     key: 'root',
-    storage,
+    storage
   }
   const logPersist = {
     key: 'login',
@@ -14,7 +17,11 @@ const persistConfig = {
     blacklist: ['loading','error'],
   };
   const rootReducer = combineReducers({
-    login:persistReducer(logPersist,login)
+    login:persistReducer(logPersist,login),
+    customer,
+    category,
+    partner
+    
 })
   const persistedReducer = persistReducer(persistConfig, rootReducer)
 

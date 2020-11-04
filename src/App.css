@@ -3,11 +3,6 @@
   margin: 0px;
   padding: 0px;
 }
-body,
-html {
-  height: 100%;
-  margin: 0;
-}
 
 /* Login Screen  */
 .login {
@@ -77,22 +72,23 @@ button:focus {
   width: 100%;
   padding: 0px;
   margin: 0px;
-  background-color: #f2f4f4;
+  background-color: #dbe0e0;
 }
 .header {
   width: 100%;
-  height: 70px;
-  background-color: #006aff;
+  height: 90px;
+  background-color: #1b4f72;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .tit {
   color: #ffffff;
   font-family: "ebrima";
-  font-size: 22px;
-  font-weight: 600;
-  margin-left: 65px;
+  font-size: larger;
+  font-size: 25px;
+  font-weight: 500;
 }
 
 .wrapper {
@@ -102,11 +98,11 @@ button:focus {
   padding-bottom: 50px;
 }
 .sidebar {
-  width: 10%;
+  width: 15%;
   display: flex;
-  padding-left: 10px;
-  background-color: #ffffff;
-  margin-left: 20px;
+  background-color: #1b4f72;
+  height: 700px;
+  margin-top: -29px;
 }
 li {
   text-decoration: none;
@@ -115,59 +111,99 @@ li {
 }
 a {
   text-decoration: none;
-  color: #2874a6;
+  color: #ffffff;
   font-size: 16px;
   font-size: medium;
-  font-weight: 600;
+  font-weight: 500;
   display: block;
   padding: 10px;
+  padding-left: 15px;
 }
 
 li a:hover {
-  color: #ffffff;
-  background-color: #006aff;
+  color: #f4d03f;
 }
 .content {
-  width: 90%;
+  width: 85%;
 }
 
+/* landing screen */
 .img {
   width: 100%;
-  height: 550px;
+  height: 600px;
+  background-color: #dbe0e0;
+}
+.mainCon {
+  width: 90%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
+  background-color: #ffffff;
+}
+.adminBoxCon {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.imag {
-  width: 95%;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
+.adminBox {
+  width: 25%;
+  border-radius: 10px;
+  margin: 15px;
+  color: #ffffff;
+  border: 0px solid white;
+  height: 150px;
+  cursor: pointer;
+  background-color: #1b4f72;
+  font-size: larger;
+  font-family: "ebrima";
+}
+.BoxTxt {
+  color: #ffffff;
+  font-size: 20px;
+  font-family: "ebrima";
+}
+.BoxTxt:hover {
+  color: #f4d03f;
+}
+.adminBox:hover {
+  color: #f4d03f;
 }
 
 /* customres screen */
 
 .container {
-  width: 95%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
+  background-color: #ffffff;
+  overflow-y: scroll;
+  height: 650px;
 }
 .section {
-  width: 48%;
+  width: 80%;
+  height: 100%;
   background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
 }
 .searchCon {
   width: 100%;
-
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
+  top: 0;
+  left: 0;
 }
 .search {
-  padding: 8px;
+  padding: 12px;
   display: block;
-  width: 40%;
+  width: 35%;
   border: 0.3px solid #bfc9ca;
   border-radius: 50px;
   margin-left: auto;
@@ -175,9 +211,9 @@ li a:hover {
 }
 .btn {
   display: block;
-  width: 25%;
+  width: 15%;
   background-color: #006aff;
-  padding: 8px;
+  padding: 9px;
   margin-top: 10px;
   margin-left: 5px;
   border-radius: 50px;
@@ -189,41 +225,53 @@ li a:hover {
   margin-right: auto;
 }
 .userCon {
-  width: 100%;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }
 .user {
-  width: 80%;
+  width: 90%;
   height: 80px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   cursor: pointer;
-  padding-bottom: 10px;
   border-radius: 100px;
+  background-color: #dbe0e0;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+.user:hover {
+  background-color: #d4e6f1;
 }
 
 .pic {
-  width: 20%;
-  height: 100%;
+  width: 15%;
+  height: 90%;
   border-radius: 50px;
   overflow: hidden;
 }
 .email {
-  width: 80%;
-  height: 100%;
-  background-color: #f2f4f4;
+  width: 60%;
+  height: 95%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .profile {
-  width: 45%;
-  height: 250px;
+  width: 40%;
+  height: 300px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 200px;
+  margin-bottom: 20px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -239,10 +287,12 @@ li a:hover {
 }
 .update {
   padding: 10px;
-  width: 40%;
+  width: 28%;
   margin: 10px;
   border-radius: 20px;
   border: 0.3px solid #bfc9ca;
+  color: #1b4f72;
+  text-align: center;
 }
 
 /* logout screen */
@@ -275,13 +325,13 @@ li a:hover {
   display: flex;
   flex-wrap: wrap;
   padding: 3px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .boxcon {
-  width: 12%;
+  width: 13%;
   overflow: hidden;
-  height: 110px;
+  height: 90px;
   margin: 10px;
   cursor: pointer;
   display: flex;
@@ -290,5 +340,5 @@ li a:hover {
   border-radius: 20px;
   flex-wrap: wrap;
   border: 0.3px solid #bfc9ca;
-  padding: 5px;
+  padding: 1px;
 }

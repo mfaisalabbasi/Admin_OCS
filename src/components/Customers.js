@@ -1,78 +1,37 @@
-import React from 'react'
-import pic from '../images/boy.jpg'
+import React, { useEffect,useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchCustomers } from '../store/action/login'
+import CustomerBox from './sub/CustomerBox'
 const Customers = () => {
+  const custo= useSelector(state => state.customer.customers)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+  dispatch(fetchCustomers())
+  }, [custo])
+  
+  const [customers, setcustomers] = useState(custo)
+  const [filtercustomer, setfiltercustomer] = useState(custo)
+  const [inputValue, setInputValue] = useState('')
+
+ 
+  const handleSearch = e =>{
+    setInputValue(e.target.value)
+    const filterData = filtercustomer.filter(item=>{
+      return item.email.toLowerCase().includes(inputValue.toLowerCase())
+    })
+    setcustomers(filterData)
+   }
     return (
-        
-        <div className='container'>
+       <div className='container'>
         <div className='section'><div className='searchCon' >
-        <input className='search' type='text' placeholder='Search Customer'/>
+        <input className='search' type='text' onChange={handleSearch} value={inputValue}  placeholder='Search Customer'/>
        <button className='btn'>Search</button>
         </div>
         <div className='userCon'>
-        <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-         <div className='email'>
-         <div className='txt'>
-         <h4>Muhammad Faisal</h4>
-         <h5>faisal@gmail.com</h5>
-         </div> 
-
-         </div>
-        </div>
-        <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-         <div className='email'>
-         <div className='txt'>
-         <h4>Muhammad Faisal</h4>
-         <h5>faisal@gmail.com</h5>
-         </div> 
-
-         </div>
-        </div>
-        <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-         <div className='email'>
-         <div className='txt'>
-         <h4>Muhammad Faisal</h4>
-         <h5>faisal@gmail.com</h5>
-         </div> 
-
-         </div>
-        </div>
-        <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-         <div className='email'> <div className='txt'>
-         <h4>Muhammad Faisal</h4>
-         <h5>faisal@gmail.com</h5>
-         </div> 
-</div>
-        </div>
-        <div className='user'>
-         <div className='pic'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-         <div className='email'><div className='txt'>
-         <h4>Muhammad Faisal</h4>
-         <h5>faisal@gmail.com</h5>
-         </div> 
-
-</div>
-        </div>
+         {customers && customers.map(custo => <CustomerBox dta={custo} key={custo.email} />)}
       </div></div>
-        <div className='section'>
-            <div className='profile'><img src={pic} alt='imag' width='100%'  height='100%'/></div>
-            <div className='data'>
-              <div className='info'>
-              <input type='text' placeholder='Muhammad Faisal' className='update'/>
-                <input type='text' placeholder='Faisal@gmail.com' className='update'/>
-                <input type='text' placeholder='Date' className='update'/>
-                <input type='text' placeholder='Phone' className='update'/>
-                <input type='text' placeholder='Location' className='update'/>
-                <input type='text' placeholder='Verification' className='update'/>
-                <input type='text' placeholder='Account Status' className='update'/>
-                <input type='text' placeholder='Account Status' className='update'/>
-              </div> 
-              <button className='btn'>Update</button>
-            </div>
-        </div>
+       
         
         </div>
            
