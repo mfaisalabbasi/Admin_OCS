@@ -18,7 +18,7 @@ const Content = () => {
           <PrivateRoute path="/dashboard/customers/:id" component={withRouter(Profile)} />
           <PrivateRoute path="/dashboard/partners" component={withRouter(Partners)} exact  />
           <PrivateRoute path="/dashboard/partners/:cat" component={withRouter(Category)} exact/>
-          <PrivateRoute path="/dashboard/partners/:cat/:id" component={withRouter(PartnerProfile)} />
+          <PrivateRoute path="/dashboard/partners/:cat/:id" component={withRouter(PartnerProfile)} exact />
           <PrivateRoute path="/dashboard/logout" component={withRouter(Logout)}  />
         </Fragment>
            

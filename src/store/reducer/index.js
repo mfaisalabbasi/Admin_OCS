@@ -9,7 +9,7 @@ import partner from './partner'
 
 const persistConfig = {
     key: 'root',
-    storage
+    storage,
   }
   const logPersist = {
     key: 'login',

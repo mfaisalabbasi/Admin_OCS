@@ -78,13 +78,7 @@ export const fetchCustomers = ()=> async dispatch => {
   }
 }
 
-//-------------------Fill Customer
-export const fillCustomer = (customer) => dispatch =>{
-  dispatch({
-    type:CUSTOMER_UPDATE,
-    payload:customer
-  })
-}
+
 
 //------------------ Updating Customer
 export const updateProfile = (userid, user) => async dispatch => {
@@ -92,20 +86,19 @@ export const updateProfile = (userid, user) => async dispatch => {
     type: LOADING_CUSTOMER,
   });
   try {
-    const {AccountStatus,verification} = user
+    const {Astatus,veri} = user
     const req = await fetch(
       `https://on-click-s.firebaseio.com/customers/${userid}.json`,
       {
         method: 'patch',
         ContentType: 'application/json',
         body: JSON.stringify({
-          AccountStatus,
-          verification
+          AccountStatus:Astatus,
+          verification:veri
         }),
       },
     );
     const res = await req.json();
-    console.log('update resp = = =',res)
     res.error
       ? dispatch({
           type: CUSTOMER_FAILED,
@@ -185,9 +178,13 @@ export const fetchCategories = ()=> async dispatch => {
   }
 }
 
+
+
+
+
 // ==========================================================Fetching Partners
 
-export const fetchPartners = (cat)=> async dispatch => {
+export const fetchPartners = ()=> async dispatch => {
   dispatch({
     type:LOADING_PARTNER
   })
@@ -203,10 +200,9 @@ export const fetchPartners = (cat)=> async dispatch => {
     }else{
       const vl = Object.keys(res);
       vl.map(item => loaded.push(res[item]));
-      const filterd = loaded.filter(partner=> partner.service === cat.toLowerCase())
       dispatch({
         type:PARTNER_SUCCESS,
-        payload:filterd.reverse()
+        payload:loaded.reverse()
       })
     }
   } catch (error) {
@@ -262,15 +258,15 @@ export const updatePartner = (userid, user) => async dispatch => {
     type: LOADING_PARTNER,
   });
   try {
-    const {AccountStatus,verification} = user
+    const {Astatus,veri} = user
     const req = await fetch(
       `https://on-click-s.firebaseio.com/sellers/${userid}.json`,
       {
         method: 'patch',
         ContentType: 'application/json',
         body: JSON.stringify({
-          AccountStatus,
-          verification
+          AccountStatus:Astatus,
+          verification:veri
         }),
       },
     );

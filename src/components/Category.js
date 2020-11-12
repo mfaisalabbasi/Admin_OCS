@@ -1,16 +1,17 @@
 import React, { useEffect ,useState} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchPartners } from '../store/action/login'
+import {  useSelector } from 'react-redux'
 import PartnerBox from './sub/PartnerBox'
 
 const Category = (props) => {
  const cat =  props.match.params.cat
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(fetchPartners(cat));
-  }, [cat])
-  const parto = useSelector(state => state.partner.partners)
-  const [partners, setpartners] = useState(parto)
+ const parto = useSelector(state => state.partner.partners)
+ const [partners, setpartners] = useState(parto)
+   
+ useEffect(() => {
+ const filterd = parto.filter(partner=> partner.service === cat.toLowerCase())
+ setpartners(filterd)
+ }, [])
+ 
   const [filterpartner, setfilterpartner] = useState(parto)
   const [inputValue, setInputValue] = useState('')
   const handleSearch = e =>{

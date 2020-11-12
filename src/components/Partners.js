@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchCategories, fetchPartners } from '../store/action/login'
+import { fetchCategories } from '../store/action/login'
+
 import CatBox from './sub/CatBox'
 const Partners = () => {
     const dispatch = useDispatch()
     useEffect(() => {
        dispatch(fetchCategories());
     }, [])
+    
     
     const categories = useSelector(state => state.category.categories)
     return (

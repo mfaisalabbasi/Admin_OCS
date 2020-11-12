@@ -8,7 +8,7 @@ const Customers = () => {
   const dispatch = useDispatch()
   useEffect(() => {
   dispatch(fetchCustomers())
-  }, [custo])
+  }, [])
   
   const [customers, setcustomers] = useState(custo)
   const [filtercustomer, setfiltercustomer] = useState(custo)
