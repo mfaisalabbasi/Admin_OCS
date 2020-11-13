@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import pic from '../../images/profile.png'
 import moment from 'moment'
 import {   updatePartner } from '../../store/action/login'
+import { useAlert } from 'react-alert'
+import { db } from '../..'
 const PartnerProfile = (props) => {
   const {name,email,phone,latitude,longitude,AccountStatus,partnerKey,date,profileUrl,verification} = props.location.state
   const [address, setaddress] = useState()
@@ -24,10 +26,16 @@ const [user, setuser] = useState({
   Astatus:AccountStatus,
   veri:verification
 })
+const {Astatus,veri}=user
+const alert = useAlert()
 const handleUpdate = ()=>{
- dispatch(updatePartner(partnerKey,user))
+  const usr = {
+    'AccountStatus':Astatus,
+    'verification':veri
+  } 
+db.ref().child('sellers').child(partnerKey).update(usr).then(res=>alert.show('Partner updated'))
+.catch(err =>alert.show('something went wrong !!!'))
 }
-  const {Astatus,veri}=user
 
        return (
        <Fragment>

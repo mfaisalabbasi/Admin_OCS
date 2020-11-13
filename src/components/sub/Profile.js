@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect ,useState} from 'react'
-import { useDispatch } from 'react-redux'
 import pic from '../../images/profile.png'
 import moment from 'moment'
-import {updateProfile } from '../../store/action/login'
+import {db} from '../../index'
+import { useAlert } from 'react-alert'
 const Profile = (props) => {
   const {name,email,phone,location,date,customerId,AccountStatus,verification,profileUrl} = props.location.state
   const [address, setaddress] = useState()
-  const dispatch = useDispatch()
   useEffect(() => {
   
   const fetchNearby = async () => {
@@ -25,10 +24,16 @@ const Profile = (props) => {
     Astatus:AccountStatus,
     veri:verification
   })
-  const handleUpdate = ()=>{
-   dispatch(updateProfile(customerId,user))
-  }
   const {Astatus,veri}=user
+   const alert = useAlert()
+  const handleUpdate =  ()=>{
+    const usr = {
+      'AccountStatus':Astatus,
+      'verification':veri
+    } 
+  db.ref().child('customers').child(customerId).update(usr).then(res=>alert.show('Customer updated'))
+  .catch(err =>alert.show('something went wrong !!!'))
+  }
        return (
        <Fragment>
        <div style={{width:'80%',backgroundColor:'#ffffff',marginLeft:'auto',marginRight:'auto', padding:'20px'}}>

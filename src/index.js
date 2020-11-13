@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import firebase from 'firebase/app';
 import "firebase/auth";
+import "firebase/database";
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 
@@ -20,6 +21,7 @@ const firebaseConfig = {
   };
  firebase.initializeApp(firebaseConfig)
  export const auth = firebase.auth();
+ export const db = firebase.database()
 
  const options = {
   // you can also just use 'bottom center'
