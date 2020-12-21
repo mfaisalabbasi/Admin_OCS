@@ -1,42 +1,51 @@
-import React, { useEffect,useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchCustomers } from '../store/action/login'
-import CustomerBox from './sub/CustomerBox'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCustomers } from "../store/action/login";
+import CustomerBox from "./sub/CustomerBox";
 const Customers = () => {
-  const custo= useSelector(state => state.customer.customers)
+  const custo = useSelector((state) => state.customer.customers);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-  dispatch(fetchCustomers())
-  }, [])
-  
-  const [customers, setcustomers] = useState(custo)
-  const [filtercustomer, setfiltercustomer] = useState(custo)
-  const [inputValue, setInputValue] = useState('')
+    dispatch(fetchCustomers());
+  }, []);
 
- 
-  const handleSearch = e =>{
-    setInputValue(e.target.value)
-    const filterData = filtercustomer.filter(item=>{
-      return item.email.toLowerCase().includes(inputValue.toLowerCase())
-    })
-    setcustomers(filterData)
-   }
-    return (
-       <div className='container'>
-        <div className='section'><div className='searchCon' >
-        <input className='search' type='text' onChange={handleSearch} value={inputValue}  placeholder='Search Customer'/>
-       <button className='btn'>Search</button>
+  const [customers, setcustomers] = useState(custo);
+  const [filtercustomer, setfiltercustomer] = useState(custo);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSearch = (e) => {
+    setInputValue(e.target.value);
+    const filterData = filtercustomer.filter((item) => {
+      return (
+        item.phone &&
+        item.phone.toLowerCase().includes(inputValue.toLowerCase())
+      );
+    });
+    setcustomers(filterData);
+  };
+  return (
+    <div className='container'>
+      <div className='section'>
+        <div className='searchCon'>
+          <input
+            className='search'
+            type='text'
+            onChange={handleSearch}
+            value={inputValue}
+            placeholder='Search Customer'
+          />
+          <button className='btn'>Search</button>
         </div>
         <div className='userCon'>
-         {customers && customers.map(custo => <CustomerBox dta={custo} key={custo.email} />)}
-      </div></div>
-       
-        
+          {customers &&
+            customers.map((custo) => (
+              <CustomerBox dta={custo} key={custo.phone} />
+            ))}
         </div>
-           
-     
-    )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Customers
+export default Customers;
