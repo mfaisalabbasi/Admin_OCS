@@ -1,10 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import pic from "../../images/profile.png";
 import moment from "moment";
-import { updatePartner } from "../../store/action/login";
 import { useAlert } from "react-alert";
-import { db } from "../..";
+import { db } from "../../index";
 const PartnerProfile = (props) => {
   const {
     name,
@@ -16,9 +14,9 @@ const PartnerProfile = (props) => {
     date,
     profileUrl,
     verification,
+    service,
   } = props.location.state;
   const [address, setaddress] = useState();
-  const dispatch = useDispatch();
   useEffect(() => {
     const fetchNearby = async () => {
       const req = await fetch(
@@ -118,6 +116,11 @@ const PartnerProfile = (props) => {
             <input
               type='text'
               defaultValue={partnerKey && partnerKey}
+              className='update'
+            />
+            <input
+              type='text'
+              defaultValue={service && service}
               className='update'
             />
           </div>

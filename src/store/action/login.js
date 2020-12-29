@@ -14,8 +14,16 @@ import {
   PARTNER_SUCCESS,
   CUSTOMER_UPDATE,
   PARTNER_UPDATE,
+  FILTERD_PARTNER,
+  LOADING_ORDERS,
+  FAILED_ORDERS,
+  SUCCESS_ORDERS,
+  LOADING_NEAREST_PARTNERS,
+  SUCCESS_NEAREST_PARTNERS,
+  FAILED_NEAREST_PARTNERS,
 } from "../constant";
-import { auth } from "../../index";
+import { auth, db } from "../../index";
+import { isPointWithinRadius, orderByDistance } from "geolib";
 
 // ==========================================================Logins Action
 export const LoginFunc = (user) => async (dispatch) => {
@@ -202,6 +210,79 @@ export const fetchPartners = () => async (dispatch) => {
   }
 };
 
+// ==========================================================Filterd Partners
+
+export const filterdPartners = (cat) => async (dispatch) => {
+  dispatch({
+    type: LOADING_PARTNER,
+  });
+  try {
+    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const res = await req.json();
+    let loaded = [];
+    if (res.error) {
+      dispatch({
+        type: PARTNER_FAILED,
+        payload: "Failed Loading filter Partners",
+      });
+    } else {
+      const vl = Object.keys(res);
+      vl.map((item) => loaded.push(res[item]));
+      const filterd = loaded.filter(
+        (partner) => partner.service && partner.service === cat.toLowerCase()
+      );
+      dispatch({
+        type: FILTERD_PARTNER,
+        payload: filterd.reverse(),
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: PARTNER_FAILED,
+      payload: "Failed Loading filtto Partners",
+    });
+  }
+};
+
+// ==========================================================Search Func
+
+export const searchFunc = (input, cat) => async (dispatch) => {
+  dispatch({
+    type: LOADING_PARTNER,
+  });
+  try {
+    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const res = await req.json();
+    let loaded = [];
+    if (res.error) {
+      dispatch({
+        type: PARTNER_FAILED,
+        payload: "Failed Loading filter Partners",
+      });
+    } else {
+      const vl = Object.keys(res);
+      vl.map((item) => loaded.push(res[item]));
+      const typefilterd = loaded.filter(
+        (partner) => partner.service && partner.service === cat.toLowerCase()
+      );
+      const filterd = typefilterd.filter(
+        (partner) =>
+          partner.phone &&
+          partner.phone.toLowerCase().includes(input.toLowerCase())
+      );
+      dispatch({
+        type: FILTERD_PARTNER,
+        payload: filterd.reverse(),
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: PARTNER_FAILED,
+      payload: "Failed Loading filtto Partners",
+    });
+  }
+};
+
 //-------------------Fill Customer
 export const fillPartner = (partner) => (dispatch) => {
   dispatch({
@@ -274,4 +355,174 @@ export const updatePartner = (userid, user) => async (dispatch) => {
       payload: "error",
     });
   }
+};
+
+//-----------------------------------------------------Orders Section
+
+// ========================================================== Fetch Orders
+
+export const fetchOrders = () => async (dispatch) => {
+  dispatch({
+    type: LOADING_ORDERS,
+  });
+  try {
+    const req = await fetch(`https://on-click-s.firebaseio.com/orders.json`);
+    const res = await req.json();
+    let loaded = [];
+    if (res.error) {
+      dispatch({
+        type: FAILED_ORDERS,
+        payload: "Failed Orders",
+      });
+    } else {
+      const vl = Object.keys(res);
+      vl.map((item) => loaded.push(res[item]));
+      dispatch({
+        type: SUCCESS_ORDERS,
+        payload: loaded.reverse(),
+      });
+    }
+  } catch (error) {
+    dispatch({
+      type: FAILED_ORDERS,
+      payload: "Failed Loading orders",
+    });
+  }
+};
+
+//--------------------------------------------Nearsest Partner
+
+export const nearestPartners = (customer) => async (dispatch) => {
+  dispatch({
+    type: LOADING_NEAREST_PARTNERS,
+  });
+  try {
+    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const res = await req.json();
+    let loaded = [];
+    if (res.error) {
+      dispatch({
+        type: FAILED_NEAREST_PARTNERS,
+        payload: "error",
+      });
+    } else {
+      const vl = Object.keys(res);
+      vl.map((item) => loaded.push(res[item]));
+      const filterd = loaded.filter(
+        (itm) =>
+          customer &&
+          itm.service === customer.service.toLowerCase() &&
+          itm.status === true &&
+          isPointWithinRadius(
+            {
+              latitude: customer.location.latitude,
+              longitude: customer.location.longitude,
+            },
+            {
+              latitude: itm.latitude,
+              longitude: itm.longitude,
+            },
+            itm.radius * 1000
+          )
+      );
+      const nearby = orderByDistance(
+        {
+          latitude: customer.location.latitude,
+          longitude: customer.location.longitude,
+        },
+        filterd
+      );
+
+      nearby.length < 1
+        ? dispatch({
+            type: FAILED_NEAREST_PARTNERS,
+            payload: "jeen da error",
+          })
+        : dispatch({
+            type: SUCCESS_NEAREST_PARTNERS,
+            payload: nearby,
+          });
+    }
+  } catch (error) {
+    console.log("err", error);
+    dispatch({
+      type: FAILED_NEAREST_PARTNERS,
+      payload: "error",
+    });
+  }
+};
+
+export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
+  // sending Notification to Customer
+  let notificationData = customer;
+  let date = Date.now();
+  notificationData.submitDate = date;
+  notificationData.route = "Notifications";
+  const req = await fetch("https://fcm.googleapis.com/fcm/send", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "key=AAAAuLwgx98:APA91bEHs_XI72VjkoOYNXrERce2paTgLcc0_xDic60YQMSWOkKSJ2DoEJBUm4IATBuVCA2ft81bIFbj6legdM-KjwQmDUnhbSQAjfvPlGpPQ6x_LbGQKI0D0UtNKrdUeCi88ug-lD1f",
+    },
+    body: JSON.stringify({
+      to: customer.Devicetoken,
+      notification: {
+        title: customer.name,
+        body: `${partner.name} is on the way, kindly contact partner `,
+        sound: "default",
+      },
+      data: notificationData,
+    }),
+  });
+
+  //----------Sending job to customer
+  db.ref()
+    .child("customers")
+    .child(customer.customerId)
+    .child("hiring")
+    .push(partner)
+    .then((res) => console.log("Order states changed hiring"))
+    .catch((err) => console.log("something went wrong !!!"));
+
+  // sending Notification to Partner
+  let notiData = partner;
+  notiData.submitDate = date;
+  notiData.route = "Notifications";
+  const rq = await fetch("https://fcm.googleapis.com/fcm/send", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "key=AAAAuLwgx98:APA91bEHs_XI72VjkoOYNXrERce2paTgLcc0_xDic60YQMSWOkKSJ2DoEJBUm4IATBuVCA2ft81bIFbj6legdM-KjwQmDUnhbSQAjfvPlGpPQ6x_LbGQKI0D0UtNKrdUeCi88ug-lD1f",
+    },
+    body: JSON.stringify({
+      to: partner.Devicetoken,
+      notification: {
+        title: partner.name,
+        body: `${customer.name} Hired you for job, kindly contact `,
+        sound: "default",
+      },
+      data: notiData,
+    }),
+  });
+
+  //----------Sending job to Partner
+  db.ref()
+    .child("sellers")
+    .child(partner.partnerKey)
+    .child("jobs")
+    .push(customer)
+    .then((res) => console.log("jobs send"))
+    .catch((err) => console.log("something went wrong jobs !!!"));
+
+  //Changing Order status
+  let orderData = customer;
+  orderData.status = "ongoing";
+  db.ref()
+    .child("orders")
+    .child(customer.orderId)
+    .update(orderData)
+    .then((res) => console.log("Order states changed"))
+    .catch((err) => console.log("something went wrong !!!"));
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCustomers } from "../store/action/login";
-import CustomerBox from "./sub/CustomerBox";
+import { fetchCustomers } from "../../store/action/login";
+import CustomerBox from "./CustomerBox";
 const Customers = () => {
   const custo = useSelector((state) => state.customer.customers);
 
@@ -40,7 +40,7 @@ const Customers = () => {
         <div className='userCon'>
           {customers &&
             customers.map((custo) => (
-              <CustomerBox dta={custo} key={custo.phone} />
+              <CustomerBox dta={custo} key={custo.date} />
             ))}
         </div>
       </div>

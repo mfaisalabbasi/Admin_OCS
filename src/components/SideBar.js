@@ -1,14 +1,26 @@
 import React from "react";
-import { FaHandshake, FaHome, FaSignOutAlt, FaUsers } from "react-icons/fa";
+import {
+  FaHandshake,
+  FaChartPie,
+  FaSignOutAlt,
+  FaUsers,
+  FaShoppingCart,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <ul>
       <li>
         <Link to='/dashboard'>
-          <FaHome size={16} /> Home
+          <FaChartPie size={16} /> Dashboard
         </Link>
       </li>
+      <li>
+        <Link to='/dashboard/orders'>
+          <FaShoppingCart size={15} /> Orders
+        </Link>
+      </li>
+
       <li>
         <Link to='/dashboard/partners'>
           <FaHandshake size={16} /> Partners

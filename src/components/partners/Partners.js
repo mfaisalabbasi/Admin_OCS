@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../store/action/login";
+import { fetchCategories } from "../../store/action/login";
 
-import CatBox from "./sub/CatBox";
+import CatBox from "./CatBox";
 const Partners = () => {
   const dispatch = useDispatch();
   useEffect(() => {

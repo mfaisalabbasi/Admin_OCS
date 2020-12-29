@@ -1,31 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import PartnerBox from "./sub/PartnerBox";
+import { useDispatch, useSelector } from "react-redux";
+import { filterdPartners, searchFunc } from "../../store/action/login";
+import PartnerBox from "./PartnerBox";
 
 const Category = (props) => {
   const cat = props.match.params.cat;
-  const parto = useSelector((state) => state.partner.partners);
-  const [partners, setpartners] = useState(parto);
-
+  const parto = useSelector((state) => state.partner.filters);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const filterd = parto.filter(
-      (partner) => partner.service === cat.toLowerCase()
-    );
-    setpartners(filterd);
-  }, []);
+    dispatch(filterdPartners(cat));
+  }, [cat]);
 
-  const [filterpartner, setfilterpartner] = useState(parto);
   const [inputValue, setInputValue] = useState("");
   const handleSearch = (e) => {
     setInputValue(e.target.value);
-    const filterData = filterpartner.filter((item) => {
-      return (
-        item.phone &&
-        item.phone.toLowerCase().includes(inputValue.toLowerCase())
-      );
-    });
-    setpartners(filterData);
+    dispatch(searchFunc(inputValue, cat));
   };
+
   return (
     <div className='container'>
       <div className='section'>
@@ -40,9 +31,9 @@ const Category = (props) => {
           <button className='btn'>Search</button>
         </div>
         <div className='userCon'>
-          {partners &&
-            partners.map((custo) => (
-              <PartnerBox dta={custo} key={custo.phone} cat={cat} />
+          {parto &&
+            parto.map((custo) => (
+              <PartnerBox dta={custo} key={custo.partnerKey} cat={cat} />
             ))}
         </div>
       </div>

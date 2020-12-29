@@ -98,7 +98,7 @@ button:focus {
   padding-bottom: 50px;
 }
 .sidebar {
-  width: 15%;
+  width: 12%;
   display: flex;
   background-color: #1b4f72;
   height: 700px;
@@ -124,7 +124,7 @@ li a:hover {
   color: #f4d03f;
 }
 .content {
-  width: 85%;
+  width: 88%;
 }
 
 /* landing screen */
@@ -177,21 +177,20 @@ li a:hover {
 /* customres screen */
 
 .container {
-  width: 90%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   justify-content: space-between;
   background-color: #ffffff;
-  overflow-y: scroll;
-  height: 650px;
 }
 .section {
   width: 80%;
-  height: 100%;
+  height: 670px;
   background-color: #ffffff;
   margin-left: auto;
   margin-right: auto;
+  overflow-y: scroll;
 }
 .searchCon {
   width: 100%;
@@ -201,13 +200,14 @@ li a:hover {
   left: 0;
 }
 .search {
-  padding: 12px;
+  padding: 8px;
   display: block;
-  width: 35%;
+  width: 30%;
   border: 0.3px solid #bfc9ca;
   border-radius: 50px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 .btn {
   display: block;
@@ -223,47 +223,54 @@ li a:hover {
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
+  display: none;
 }
 .userCon {
-  width: 70%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
+  overflow-y: scroll;
 }
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
 }
 .user {
-  width: 90%;
-  height: 80px;
+  width: 100%;
+  height: 45px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   cursor: pointer;
-  border-radius: 100px;
-  background-color: #dbe0e0;
-  margin-top: 10px;
-  margin-bottom: 3px;
-  justify-content: space-around;
+  border-radius: 2px;
+  background-color: #ffffff;
+  justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  border: 0.5px solid #d5d5d5;
+  font-family: monospace;
 }
 .user:hover {
-  background-color: #d4e6f1;
+  background-color: #e9f4ff;
 }
 
 .pic {
-  width: 15%;
+  width: 10%;
   height: 90%;
   border-radius: 50px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .email {
-  width: 60%;
+  width: 45%;
   height: 95%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
 .profile {
   width: 40%;
   height: 300px;
@@ -341,4 +348,198 @@ li a:hover {
   flex-wrap: wrap;
   border: 0.3px solid #bfc9ca;
   padding: 1px;
+}
+
+/* -----------------------------------------------------order page */
+
+.orderWrap {
+  width: 100%;
+  height: 670px;
+  overflow-y: scroll;
+}
+
+.titleBarStatic {
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  height: 45px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #1b4f72;
+  border-radius: 4px;
+}
+.bxStatic {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.titleBar {
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0.5px solid #eaeded;
+  padding: 2px;
+  cursor: pointer;
+  color: rgb(43, 41, 41);
+}
+.titleBar:hover {
+  background-color: #e9f4ff;
+}
+.bx {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+}
+
+.orderPic {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orderImg {
+  width: 65%;
+  height: 95%;
+  border-radius: 100px;
+}
+.orderName {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* --------------------------------------Order Profile */
+
+.profileCustomer {
+  width: 30%;
+  height: 670px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.customerImage {
+  width: 55%;
+  height: 30%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.customerdata {
+  height: 70%;
+  padding-top: 20px;
+  padding-left: 15px;
+}
+
+.infodata {
+  width: 80%;
+  padding: 12px;
+  border-radius: none;
+  font-size: 13px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 3px;
+  text-align: center;
+}
+
+/* right section */
+.nearPartner {
+  width: 70%;
+  height: 670px;
+  overflow-y: scroll;
+}
+.nearpartnertop {
+  width: 100%;
+  height: 30px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.nearpartnerbox {
+  width: 98%;
+  height: 100px;
+  background-color: #ebf5fb;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px lightgray;
+}
+
+.nearpartnerimg {
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 12px;
+  font-family: monospace;
+  padding: 3px;
+}
+.nearpartnerinfo {
+  height: 100%;
+  width: 35%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 2px dashed lightgray;
+}
+.nearpartnerlast {
+  border-left: 2px dashed lightgray;
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3px;
+}
+.nearpartnerbtn {
+  width: 110%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 40px;
+  border: none;
+  background-color: #0080ff;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.nearpartnerbtn:hover {
+  background-color: green;
 }
