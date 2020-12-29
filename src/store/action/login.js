@@ -455,6 +455,7 @@ export const nearestPartners = (customer) => async (dispatch) => {
 export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
   // sending Notification to Customer
   let notificationData = customer;
+  let notiData = partner;
   let date = Date.now();
   notificationData.submitDate = date;
   notificationData.route = "Notifications";
@@ -481,12 +482,11 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
     .child("customers")
     .child(customer.customerId)
     .child("hiring")
-    .push(partner)
+    .push(notiData)
     .then((res) => console.log("Order states changed hiring"))
     .catch((err) => console.log("something went wrong !!!"));
 
   // sending Notification to Partner
-  let notiData = partner;
   notiData.submitDate = date;
   notiData.route = "Notifications";
   const rq = await fetch("https://fcm.googleapis.com/fcm/send", {
@@ -512,7 +512,7 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
     .child("sellers")
     .child(partner.partnerKey)
     .child("jobs")
-    .push(customer)
+    .push(notificationData)
     .then((res) => console.log("jobs send"))
     .catch((err) => console.log("something went wrong jobs !!!"));
 

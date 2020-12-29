@@ -11,23 +11,20 @@ import orders from "./orders";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["login", "customer", "category", "partner", "orders"],
 };
 const logPersist = {
   key: "login",
   storage,
   blacklist: ["loading", "error"],
 };
-const orderPersist = {
-  key: "orders",
-  storage,
-  blacklist: ["loading", "error", "orders"],
-};
+
 const rootReducer = combineReducers({
   login: persistReducer(logPersist, login),
   customer,
   category,
   partner,
-  orders: persistReducer(orderPersist, orders),
+  orders,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
