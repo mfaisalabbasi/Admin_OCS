@@ -453,12 +453,29 @@ export const nearestPartners = (customer) => async (dispatch) => {
 };
 
 export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
-  // sending Notification to Customer
-  let notificationData = customer;
-  let notiData = partner;
   let date = Date.now();
-  notificationData.submitDate = date;
-  notificationData.route = "Notifications";
+
+  //-----------customer Data
+  let customerData = {};
+  customerData.name = customer.name;
+  customerData.location = customer.location;
+  customerData.phone = customer.phone;
+  customerData.profileUrl = customer.profileUrl ? customer.profileUrl : null;
+  customerData.submitDate = date;
+  customerData.route = "Notifications";
+
+  //------------partner Data
+  let partnerdata = {};
+  partnerdata.name = partner.name;
+  partnerdata.expertise = partner.expertise;
+  partnerdata.latitude = partner.latitude;
+  partnerdata.longitude = partner.longitude;
+  partnerdata.phone = partner.phone;
+  partnerdata.profileUrl = partner.profileUrl ? partner.profileUrl : null;
+  partnerdata.submitDate = date;
+  partnerdata.route = "Notifications";
+
+  // sending Notification to Customer
   const req = await fetch("https://fcm.googleapis.com/fcm/send", {
     method: "post",
     headers: {
@@ -468,12 +485,13 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
     },
     body: JSON.stringify({
       to: customer.Devicetoken,
+      direct_book_ok: true,
       notification: {
         title: customer.name,
         body: `${partner.name} is on the way, kindly contact partner `,
         sound: "default",
       },
-      data: notificationData,
+      data: partnerdata,
     }),
   });
 
@@ -482,14 +500,12 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
     .child("customers")
     .child(customer.customerId)
     .child("hiring")
-    .push(notiData)
-    .then((res) => console.log("Order states changed hiring"))
+    .push(partnerdata)
+    .then((res) => console.log("job request to cust success"))
     .catch((err) => console.log("something went wrong !!!"));
 
   // sending Notification to Partner
-  notiData.submitDate = date;
-  notiData.route = "Notifications";
-  const rq = await fetch("https://fcm.googleapis.com/fcm/send", {
+  await fetch("https://fcm.googleapis.com/fcm/send", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -503,16 +519,16 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
         body: `${customer.name} Hired you for job, kindly contact `,
         sound: "default",
       },
-      data: notiData,
+      data: customerData,
     }),
   });
 
-  //----------Sending job to Partner
+  // //----------Sending job to Partner
   db.ref()
     .child("sellers")
     .child(partner.partnerKey)
     .child("jobs")
-    .push(notificationData)
+    .push(customerData)
     .then((res) => console.log("jobs send"))
     .catch((err) => console.log("something went wrong jobs !!!"));
 
