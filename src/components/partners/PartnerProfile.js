@@ -32,6 +32,7 @@ const PartnerProfile = (props) => {
   }, []);
 
   //------------------handling update
+  let serviceName = service.replace(/ /g, "");
 
   const [user, setuser] = useState({
     Astatus: AccountStatus,
@@ -46,6 +47,7 @@ const PartnerProfile = (props) => {
     };
     db.ref()
       .child("sellers")
+      .child(serviceName)
       .child(partnerKey)
       .update(usr)
       .then((res) => alert.show("Partner updated"))

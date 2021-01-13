@@ -213,11 +213,14 @@ export const fetchPartners = () => async (dispatch) => {
 // ==========================================================Filterd Partners
 
 export const filterdPartners = (cat) => async (dispatch) => {
+  let serviceName = cat.toLowerCase().replace(/ /g, "");
   dispatch({
     type: LOADING_PARTNER,
   });
   try {
-    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const req = await fetch(
+      `https://on-click-s.firebaseio.com/sellers/${serviceName}.json`
+    );
     const res = await req.json();
     let loaded = [];
     if (res.error) {
@@ -247,11 +250,14 @@ export const filterdPartners = (cat) => async (dispatch) => {
 // ==========================================================Search Func
 
 export const searchFunc = (input, cat) => async (dispatch) => {
+  let serviceName = cat.toLowerCase().replace(/ /g, "");
   dispatch({
     type: LOADING_PARTNER,
   });
   try {
-    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const req = await fetch(
+      `https://on-click-s.firebaseio.com/sellers/${serviceName}.json`
+    );
     const res = await req.json();
     let loaded = [];
     if (res.error) {
@@ -262,10 +268,7 @@ export const searchFunc = (input, cat) => async (dispatch) => {
     } else {
       const vl = Object.keys(res);
       vl.map((item) => loaded.push(res[item]));
-      const typefilterd = loaded.filter(
-        (partner) => partner.service && partner.service === cat.toLowerCase()
-      );
-      const filterd = typefilterd.filter(
+      const filterd = loaded.filter(
         (partner) =>
           partner.phone &&
           partner.phone.toLowerCase().includes(input.toLowerCase())
@@ -393,11 +396,14 @@ export const fetchOrders = () => async (dispatch) => {
 //--------------------------------------------Nearsest Partner
 
 export const nearestPartners = (customer) => async (dispatch) => {
+  let serviceName = customer.service.toLowerCase().replace(/ /g, "");
   dispatch({
     type: LOADING_NEAREST_PARTNERS,
   });
   try {
-    const req = await fetch(`https://on-click-s.firebaseio.com/sellers.json`);
+    const req = await fetch(
+      `https://on-click-s.firebaseio.com/sellers/${serviceName}.json`
+    );
     const res = await req.json();
     let loaded = [];
     if (res.error) {
@@ -411,12 +417,13 @@ export const nearestPartners = (customer) => async (dispatch) => {
       const filterd = loaded.filter(
         (itm) =>
           customer &&
-          itm.service === customer.service.toLowerCase() &&
           itm.status === true &&
           isPointWithinRadius(
             {
-              latitude: customer.location.latitude,
-              longitude: customer.location.longitude,
+              latitude:
+                customer.location.latitude && customer.location.latitude,
+              longitude:
+                customer.location.longitude && customer.location.longitude,
             },
             {
               latitude: itm.latitude,
@@ -524,8 +531,11 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
   });
 
   // //----------Sending job to Partner
+  let serviceName = partner.service.replace(/ /g, "");
+
   db.ref()
     .child("sellers")
+    .child(serviceName)
     .child(partner.partnerKey)
     .child("jobs")
     .push(customerData)
