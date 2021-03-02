@@ -35,7 +35,7 @@ const Customers = () => {
             value={inputValue}
             placeholder='Search Customer'
           />
-          <button className='btn'>Search</button>
+          {/* <button className='btn'>Search</button> */}
         </div>
         <div className='userCon'>
           {customers &&

@@ -28,7 +28,7 @@ const Category = (props) => {
             onChange={handleSearch}
             placeholder='Search Customer'
           />
-          <button className='btn'>Search</button>
+          {/* <button className='btn'>Search</button> */}
         </div>
         <div className='userCon'>
           {parto &&

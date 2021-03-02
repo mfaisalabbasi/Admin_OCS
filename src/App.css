@@ -223,7 +223,7 @@ li a:hover {
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  display: none;
+  /* display: none; */
 }
 .userCon {
   width: 95%;
