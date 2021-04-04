@@ -1,25 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import profile from "../../images/boy.jpg";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { nearestPartners } from "../../store/action/login";
 import NearestPartners from "./NearestPartners";
-
+import Geocoder from "react-native-geocoding";
 const OrderProfile = (props) => {
   const {
     name,
     phone,
     profileUrl,
     status,
-    date,
-    customerId,
+    location,
     orderDate,
+    service,
   } = props.location.state;
   const partners = useSelector((state) => state.orders.nearestpartners);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(nearestPartners(props.location.state));
   }, []);
+
+  //geo location
+  const [address, setaddress] = useState();
+  Geocoder.init("AIzaSyClqm-gEevCnkyiD45oWeFibRZ8VbmIHDc");
+  useEffect(() => {
+    const fetchNearby = async () => {
+      const req = await Geocoder.from({
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      setaddress(req.results[0].formatted_address);
+    };
+    fetchNearby();
+  }, []);
+
   return (
     <div className='container' style={{ marginTop: "-10px" }}>
       <div className='profileCustomer'>
@@ -48,10 +63,11 @@ const OrderProfile = (props) => {
             />
             <input
               type='text'
-              defaultValue={customerId}
-              name='customerId'
+              defaultValue={service}
+              name='service'
               className='infodata'
             />
+            <div className='infodata'>{address}</div>
           </div>
         </div>
       </div>

@@ -39,8 +39,14 @@ const Box = (props) => {
         </div>
         <div className='orderName'>{props.data.name}</div>
       </div>
-      <div className='bx' style={{ width: "40%" }}>
+      <div className='bx' style={{ width: "30%" }}>
         {address && address}
+      </div>
+      <div
+        className='bx'
+        style={{ width: "10%", color: "#152375", textAlign: "center" }}
+      >
+        {props.data.service}
       </div>
       <div className='bx'>
         {props.data.orderDate

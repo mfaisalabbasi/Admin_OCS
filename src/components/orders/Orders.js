@@ -9,8 +9,11 @@ const Orders = () => {
       <div className='orderWrap'>
         <div className='titleBarStatic'>
           <div className='bxStatic'>Name</div>
-          <div className='bxStatic' style={{ width: "40%" }}>
+          <div className='bxStatic' style={{ width: "30%" }}>
             Address
+          </div>
+          <div className='bxStatic' style={{ width: "10%" }}>
+            Service
           </div>
           <div className='bxStatic'>Date</div>
           <div className='bxStatic' style={{ width: "10%" }}>
