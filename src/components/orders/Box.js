@@ -58,9 +58,11 @@ const Box = (props) => {
         style={{
           backgroundColor:
             props.data.status === "pending"
-              ? "#EC7063"
+              ? "#D83108"
               : props.data.status === "completed"
-              ? "#17A589"
+              ? "green"
+              : props.data.status === "bounce"
+              ? "#D9AB00"
               : "blue",
           fontWeight: "bold",
           width: "10%",

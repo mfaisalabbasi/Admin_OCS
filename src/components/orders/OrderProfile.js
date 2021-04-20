@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import profile from "../../images/boy.jpg";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { nearestPartners } from "../../store/action/login";
+import { nearestPartners, changeStatus } from "../../store/action/login";
 import NearestPartners from "./NearestPartners";
 import Geocoder from "react-native-geocoding";
 const OrderProfile = (props) => {
@@ -35,6 +35,10 @@ const OrderProfile = (props) => {
     fetchNearby();
   }, []);
 
+  const orderStatusChange = ({ val }) => {
+    dispatch(changeStatus(props.location.state, val));
+    alert("status change");
+  };
   return (
     <div className='container' style={{ marginTop: "-10px" }}>
       <div className='profileCustomer'>
@@ -67,6 +71,50 @@ const OrderProfile = (props) => {
               name='service'
               className='infodata'
             />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                backgroundColor:
+                  status === "pending"
+                    ? "#EC7063"
+                    : status === "completed"
+                    ? "green"
+                    : status === "bounce"
+                    ? "#D9AB00"
+                    : "blue",
+                fontWeight: "bolder",
+                color: "white",
+              }}
+              className='infodata'
+            >
+              <div
+                onClick={() => orderStatusChange({ val: "bounce" })}
+                style={{
+                  backgroundColor: "#6C3483",
+                  fontWeight: "bolder",
+                  color: "white",
+                  width: "48%",
+                  paddingTop: "5px",
+                  paddingBottom: "5px",
+                }}
+              >
+                Bounce
+              </div>
+              <div
+                onClick={() => orderStatusChange({ val: "completed" })}
+                style={{
+                  backgroundColor: "#BF487A",
+                  fontWeight: "bolder",
+                  color: "white",
+                  width: "48%",
+                  paddingTop: "5px",
+                  paddingBottom: "5px",
+                }}
+              >
+                completed
+              </div>
+            </div>
             <div className='infodata'>{address}</div>
           </div>
         </div>

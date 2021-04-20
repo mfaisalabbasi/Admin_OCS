@@ -552,3 +552,20 @@ export const onSubmittingOrder = (customer, partner) => async (dispatch) => {
     .then((res) => console.log("Order states changed"))
     .catch((err) => console.log("something went wrong !!!"));
 };
+
+export const changeStatus = (order, value) => async (dispatch) => {
+  console.log("val", value);
+  console.log("order", order);
+  try {
+    let orderData = order;
+    orderData.status = value;
+    db.ref()
+      .child("orders")
+      .child(order.orderId)
+      .update(orderData)
+      .then((res) => console.log("Order states changed"))
+      .catch((err) => console.log("something went wrong !!!"));
+  } catch (error) {
+    console.log("order status could not update");
+  }
+};
