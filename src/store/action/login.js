@@ -405,6 +405,7 @@ export const nearestPartners = (customer) => async (dispatch) => {
       `https://on-click-s.firebaseio.com/sellers/${serviceName}.json`
     );
     const res = await req.json();
+    console.log("res", res);
     let loaded = [];
     if (res.error) {
       dispatch({
@@ -414,10 +415,13 @@ export const nearestPartners = (customer) => async (dispatch) => {
     } else {
       const vl = Object.keys(res);
       vl.map((item) => loaded.push(res[item]));
+      console.log("loaded", loaded);
       const filterd = loaded.filter(
         (itm) =>
           customer &&
           itm.status === true &&
+          itm.latitude &&
+          itm.longitude &&
           isPointWithinRadius(
             {
               latitude:
@@ -432,6 +436,7 @@ export const nearestPartners = (customer) => async (dispatch) => {
             itm.radius * 1000
           )
       );
+      console.log("filetr");
       const nearby = orderByDistance(
         {
           latitude: customer.location.latitude,
