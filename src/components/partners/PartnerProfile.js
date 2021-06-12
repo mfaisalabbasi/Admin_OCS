@@ -15,6 +15,8 @@ const PartnerProfile = (props) => {
     profileUrl,
     verification,
     service,
+    due,
+    jobdone
   } = props.location.state;
   const [address, setaddress] = useState();
   useEffect(() => {
@@ -37,13 +39,17 @@ const PartnerProfile = (props) => {
   const [user, setuser] = useState({
     Astatus: AccountStatus,
     veri: verification,
+    dues: due && due,
+    jobdones:jobdone && jobdone
   });
-  const { Astatus, veri } = user;
+  const { Astatus, veri, dues,jobdones } = user;
   const alert = useAlert();
   const handleUpdate = () => {
     const usr = {
       AccountStatus: Astatus,
       verification: veri,
+      jobdone:jobdones,
+      due:dues
     };
     db.ref()
       .child("sellers")
@@ -87,14 +93,7 @@ const PartnerProfile = (props) => {
               name='phone'
               className='update'
             />
-            <input
-              type='text'
-              defaultValue={
-                date && moment(date).format("MMMM Do YYYY, h:mm:ss a")
-              }
-              name='date'
-              className='update'
-            />
+           
             <input
               type='text'
               defaultValue={address && address}
@@ -122,8 +121,17 @@ const PartnerProfile = (props) => {
             />
             <input
               type='text'
-              defaultValue={service && service}
+              defaultValue="Due"
+              value={dues && dues}
               className='update'
+              onChange={(e) => setuser({ ...user, dues: e.target.value })}
+            />
+             <input
+              type='text'
+              defaultValue='Job Done'
+              className='update'
+              value={jobdones && jobdones}
+              onChange={(e) => setuser({ ...user, jobdones: e.target.value })}
             />
           </div>
           <button className='btn' onClick={handleUpdate}>

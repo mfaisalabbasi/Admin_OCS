@@ -25,12 +25,12 @@ const CustomerBox = (props) => {
           </div>
           <div className='email'>
             <div className='txt' style={{ color: "#1b4f72" }}>
-              <h4>{props.dta.name}</h4>
-              <h5>{props.dta.phone}</h5>
+              <h4 className='txtl'>{props.dta.name}</h4>
+              <h5 className='txtl'>{props.dta.phone}</h5>
             </div>
           </div>
           <div className='email'>
-            <div className='txt' style={{ color: "#1b4f72" }}>
+            <div className='txt' style={{ color: "#1b4f72" }} className='txtl'>
               {props.dta &&
                 moment(props.dta.date).format("MMMM Do YYYY, h:mm:ss a")}
             </div>

@@ -14,7 +14,7 @@ const Logout = () => {
     <div className='logout'>
       <div className='sublog'>
         <div className='form'>
-          <h4> Are you sure to logout ???</h4>
+          <h4 className='txtl'> Are you sure to logout ???</h4>
           <button className='logbtn' onClick={handleLogout}>
             Logout
           </button>

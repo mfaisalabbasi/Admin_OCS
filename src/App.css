@@ -66,6 +66,28 @@ button:focus {
   outline: none;
 }
 
+/* HOMe Component */
+
+.homestyle {
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homebtns {
+  width: 17%;
+  height: 55px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #006aff;
+  font-family: "ebrima";
+  font-weight: bold;
+  font-size: 18px;
+  border: 0.3px solid #ffffff;
+}
+
 /* Dashboard Component */
 
 .main {
@@ -542,4 +564,159 @@ li a:hover {
 
 .nearpartnerbtn:hover {
   background-color: green;
+}
+
+/* --------------------------Media Queries --------------------------------------------------- */
+
+@media only screen and (max-width: 425px) {
+  /*------------ Login Screen ------------- */
+
+  .login {
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .box {
+    width: 90%;
+  }
+  .title {
+    font-size: smaller;
+  }
+
+  .form {
+    height: 60%;
+    margin-top: -10px;
+  }
+  .input {
+    width: 70%;
+  }
+  .button {
+    width: 50%;
+    padding: 9px;
+  }
+
+  /* --------------home screen--------- */
+  .homebtns {
+    width: 65%;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  /* --------- Dashboard Component -------- */
+
+  .header {
+    width: 100%;
+    height: 50px;
+  }
+  .tit {
+    font-size: 18px;
+  }
+
+  .sidebar {
+    width: 35%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    display: block;
+    padding: 5px;
+    padding-left: 5px;
+  }
+
+  li a:hover {
+    color: #f4d03f;
+  }
+
+  /* landing screen */
+
+  .adminBox {
+    width: 100%;
+    margin: 5px;
+    height: 50px;
+    font-size: 12px;
+    font-family: "ebrima";
+    overflow: hidden;
+  }
+  .BoxTxt {
+    font-size: 14px;
+    font-family: "ebrima";
+    background-color: #f1c40f;
+    padding: 17px;
+  }
+
+  /* customres screen */
+  .section {
+    width: 100%;
+  }
+
+  .search {
+    padding: 5px;
+    width: 70%;
+  }
+  .userCon {
+    width: 97%;
+  }
+  .user {
+    width: 100%;
+    background-color: #d6eaf8;
+  }
+  .pic {
+    width: 12%;
+    height: 90%;
+    border-radius: 50px;
+  }
+  .txtl {
+    font-size: 9px;
+  }
+
+  .profile {
+    width: 80%;
+    height: 150px;
+    margin-bottom: 0px;
+  }
+
+  .update {
+    padding: 5px;
+    width: 100%;
+    margin: 10px;
+    border-radius: 10px;
+    border: 0.01px solid #bfc9ca;
+    color: #1b4f72;
+    text-align: center;
+    font-size: 10px;
+  }
+  .btn {
+    width: 80%;
+    padding: 5px;
+  }
+
+  /* --------logout screen----- */
+
+  .sublog {
+    width: 80%;
+    padding: 50px;
+    background-color: #ebf5fb;
+  }
+  .logbtn {
+    padding: 5px;
+  }
+
+  /*------------- partner box----------------- */
+  .boxcon {
+    width: 40%;
+    overflow: hidden;
+    height: 60px;
+  }
+  /*
+
+
+
+
+
+
+
+ */
 }

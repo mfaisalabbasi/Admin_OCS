@@ -21,6 +21,7 @@ const CatBox = ({ dta }) => {
           alignItems: "center",
           color: "#1b4f72",
         }}
+        className='txtl'
       >
         {dta.name}{" "}
       </div>

@@ -13,6 +13,7 @@ const Profile = (props) => {
     AccountStatus,
     verification,
     profileUrl,
+    hiring
   } = props.location.state;
   const [address, setaddress] = useState();
   useEffect(() => {
@@ -113,6 +114,12 @@ const Profile = (props) => {
             <input
               type='text'
               defaultValue={customerId && customerId}
+              className='update'
+            />
+             <input
+              type='text'
+              defaultValue='Hiring'
+              value={hiring && Object.keys(hiring).length}
               className='update'
             />
           </div>
