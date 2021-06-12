@@ -39,12 +39,12 @@ const Box = (props) => {
         </div>
         <div className='orderName'>{props.data.name}</div>
       </div>
-      <div className='bx' style={{ width: "30%" }}>
+      <div className='addressid' id='hideme'>
         {address && address}
       </div>
       <div
-        className='bx'
-        style={{ width: "10%", color: "#152375", textAlign: "center" }}
+        className='serviceid'
+        style={{ color: "#152375", textAlign: "center" }}
       >
         {props.data.service}
       </div>
@@ -54,7 +54,7 @@ const Box = (props) => {
           : "Date"}
       </div>
       <div
-        className='bx'
+        className='statusid'
         style={{
           backgroundColor:
             props.data.status === "pending"
@@ -65,9 +65,8 @@ const Box = (props) => {
               ? "#D9AB00"
               : "blue",
           fontWeight: "bold",
-          width: "10%",
+
           borderRadius: "5px",
-          fontSize: "15px",
           color: "#EBEDEF",
         }}
       >

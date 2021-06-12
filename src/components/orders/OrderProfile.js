@@ -6,15 +6,8 @@ import { nearestPartners, changeStatus } from "../../store/action/login";
 import NearestPartners from "./NearestPartners";
 import Geocoder from "react-native-geocoding";
 const OrderProfile = (props) => {
-  const {
-    name,
-    phone,
-    profileUrl,
-    status,
-    location,
-    orderDate,
-    service,
-  } = props.location.state;
+  const { name, phone, profileUrl, status, location, orderDate, service } =
+    props.location.state;
   const partners = useSelector((state) => state.orders.nearestpartners);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,7 +33,10 @@ const OrderProfile = (props) => {
     alert("status change");
   };
   return (
-    <div className='container' style={{ marginTop: "-10px" }}>
+    <div
+      className='container'
+      style={{ marginTop: "-10px", display: "flex", flexWrap: "wrap" }}
+    >
       <div className='profileCustomer'>
         <div className='customerImage'>
           <img

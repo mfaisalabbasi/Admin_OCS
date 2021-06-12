@@ -9,16 +9,10 @@ const Orders = () => {
       <div className='orderWrap'>
         <div className='titleBarStatic'>
           <div className='bxStatic'>Name</div>
-          <div className='bxStatic' style={{ width: "30%" }}>
-            Address
-          </div>
-          <div className='bxStatic' style={{ width: "10%" }}>
-            Service
-          </div>
+          <div className='addressbox'>Address</div>
+          <div className='servicebox'>Service</div>
           <div className='bxStatic'>Date</div>
-          <div className='bxStatic' style={{ width: "10%" }}>
-            Status
-          </div>
+          <div className='statusbox'>Status</div>
         </div>
         {orders &&
           orders.map((order) => <Box data={order} key={order.orderDate} />)}
